@@ -1,0 +1,14 @@
+{
+  "name": "any-share — local file sharing",
+  "short_name": "any-share",
+  "description": "Share files and text between devices on the same wifi. Nothing is uploaded to a server.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1020",
+  "theme_color": "#0b1020",
+  "icons": [
+    { "src": "/icon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any maskable" }
+  ]
+}

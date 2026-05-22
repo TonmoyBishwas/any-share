@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1020" />
+    <title>any-share · local file sharing</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+  </head>
+  <body>
+    <main id="app">
+      <header class="topbar">
+        <h1>any<span>·</span>share</h1>
+        <span class="badge" title="Files transfer directly between devices on this wifi. Nothing is uploaded to a server.">local-only</span>
+      </header>
+
+      <!-- connecting to signaling -->
+      <section id="screen-connecting" class="screen">
+        <p class="muted">Connecting…</p>
+      </section>
+
+      <!-- home: your code + connect -->
+      <section id="screen-home" class="screen hidden">
+        <div class="card">
+          <p class="label">Your code</p>
+          <div id="my-code" class="code-big">----</div>
+          <canvas id="my-qr" class="qr" width="180" height="180" aria-label="Your pairing QR code"></canvas>
+          <p class="hint">Tell this code (or show this QR) to the other device on your wifi.</p>
+        </div>
+
+        <div class="card">
+          <label class="label" for="name-input">This device's name</label>
+          <input id="name-input" type="text" maxlength="32" placeholder="e.g. Lab PC 3" autocomplete="off" />
+        </div>
+
+        <div class="card">
+          <p class="label">Connect to a device</p>
+          <div class="row">
+            <input id="peer-code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="0000" autocomplete="off" />
+            <button id="connect-btn" class="primary">Connect</button>
+          </div>
+          <button id="scan-btn" class="ghost">📷 Scan a QR code instead</button>
+          <div id="scanner" class="hidden">
+            <video id="scan-video" playsinline muted></video>
+            <button id="scan-stop" class="ghost">Stop camera</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- outgoing request -->
+      <section id="screen-outgoing" class="screen hidden">
+        <div class="card center">
+          <div class="spinner"></div>
+          <p>Waiting for the other device to accept…</p>
+          <p class="label">Verify word</p>
+          <div id="out-verify" class="verify">—</div>
+          <p class="hint">Make sure it matches the word on the other device.</p>
+          <button id="out-cancel" class="ghost">Cancel</button>
+        </div>
+      </section>
+
+      <!-- incoming request -->
+      <section id="screen-incoming" class="screen hidden">
+        <div class="card center">
+          <p><strong id="in-name">A device</strong> wants to connect.</p>
+          <p class="label">Verify word</p>
+          <div id="in-verify" class="verify">—</div>
+          <p class="hint">Only accept if this word matches the other device.</p>
+          <div class="row">
+            <button id="accept-btn" class="primary">Accept</button>
+            <button id="reject-btn" class="ghost">Reject</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- establishing webrtc -->
+      <section id="screen-rtc" class="screen hidden">
+        <div class="card center">
+          <div class="spinner"></div>
+          <p>Establishing a secure local connection…</p>
+        </div>
+      </section>
+
+      <!-- connected: transfer -->
+      <section id="screen-connected" class="screen hidden">
+        <div class="card">
+          <p class="label">Connected to</p>
+          <div id="peer-name" class="peer-name">A device</div>
+        </div>
+
+        <div id="drop-zone" class="card drop">
+          <input id="file-input" type="file" multiple hidden />
+          <p>Drop files here, or</p>
+          <button id="pick-btn" class="primary">Choose files</button>
+        </div>
+
+        <div class="card">
+          <label class="label" for="text-input">Send text</label>
+          <textarea id="text-input" rows="2" placeholder="Type or paste text…"></textarea>
+          <button id="send-text-btn" class="primary">Send text</button>
+        </div>
+
+        <div class="card">
+          <p class="label">Transfers</p>
+          <ul id="transfers" class="list"></ul>
+          <ul id="received" class="list"></ul>
+        </div>
+
+        <button id="disconnect-btn" class="ghost danger">Disconnect</button>
+      </section>
+
+      <!-- direct connection failed (client isolation) -->
+      <section id="screen-failed" class="screen hidden">
+        <div class="card center">
+          <p class="big">🔌 Couldn't connect on this network</p>
+          <p>This wifi appears to block direct device-to-device connections
+            (<em>client isolation</em>), so local-only sharing can't reach the other device here.</p>
+          <p class="hint">It will work on networks that allow direct connections (most home wifi).
+            A relay fallback can be enabled later to make it work everywhere.</p>
+          <button id="failed-back" class="primary">Back</button>
+        </div>
+      </section>
+
+      <!-- peer left -->
+      <section id="screen-left" class="screen hidden">
+        <div class="card center">
+          <p>The other device disconnected.</p>
+          <button id="left-back" class="primary">Back</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <footer class="footer muted">Files go straight between devices on your wifi. Encrypted end-to-end. Never uploaded.</footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

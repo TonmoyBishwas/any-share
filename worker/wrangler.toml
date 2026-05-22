@@ -1,0 +1,30 @@
+# Cloudflare Worker: signaling for any-share.
+# Free plan compatible: SQLite-backed Durable Object + WebSocket Hibernation.
+
+name = "any-share-rtc"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+
+# Lets you test on https://any-share-rtc.<your-subdomain>.workers.dev before wiring the domain.
+workers_dev = true
+
+# A Durable Object instance per network groups devices that share a public IP.
+[[durable_objects.bindings]]
+name = "ROOMS"
+class_name = "RoomDO"
+
+# Free plan requires SQLite-backed classes (new_sqlite_classes, not new_classes).
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RoomDO"]
+
+# After you add any-share.site to Cloudflare (free plan) and point its nameservers,
+# uncomment this so signaling lives under your one domain at /rtc/*.
+# A Worker route is more specific than Pages, so it wins for these paths.
+# routes = [
+#   { pattern = "any-share.site/rtc/*", zone_name = "any-share.site" }
+# ]
+
+# Optional: rotate the room-key salt by setting a secret (wrangler secret put ROOM_SALT).
+# [vars]
+# ROOM_SALT = "change-me"

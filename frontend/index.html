@@ -4,10 +4,102 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#0b1020" />
-    <title>any-share · local file sharing</title>
+
+    <!-- Canonical host: consolidate www → apex for users and crawlers -->
+    <script>
+      if (location.hostname === "www.any-share.site") {
+        location.replace("https://any-share.site" + location.pathname + location.search + location.hash);
+      }
+    </script>
+
+    <title>any-share — Local File Sharing Over Wi-Fi, No App or Signup</title>
+    <meta name="description" content="any-share (any-share.site) is a free, web-based tool to share files, photos, documents, and text directly between devices on the same Wi-Fi. Enter a 4-digit code, connect peer-to-peer, and transfer — no app, no signup, nothing uploaded to a server." />
+    <link rel="canonical" href="https://any-share.site/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="keywords" content="any-share, anyshare, local file sharing, share files over wifi, send files between phone and pc, web file transfer, peer to peer file sharing, no app file transfer" />
+    <meta name="author" content="any-share" />
+    <meta name="google-site-verification" content="zk48C8duyGAX6bNdCYNR6Q8svLP_5-lIp3esAgNoCtM" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="any-share" />
+    <meta property="og:title" content="any-share — Local File Sharing Over Wi-Fi, No App" />
+    <meta property="og:description" content="Share files and text directly between devices on the same Wi-Fi. Enter a 4-digit code, connect peer-to-peer, transfer. No app, no signup, nothing uploaded." />
+    <meta property="og:url" content="https://any-share.site/" />
+    <meta property="og:image" content="https://any-share.site/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="any-share — Local File Sharing Over Wi-Fi, No App" />
+    <meta name="twitter:description" content="Share files and text directly between devices on the same Wi-Fi. 4-digit code, peer-to-peer, no app, nothing uploaded." />
+    <meta name="twitter:image" content="https://any-share.site/og.png" />
+
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icon.svg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "any-share",
+      "alternateName": "anyshare",
+      "url": "https://any-share.site/",
+      "description": "Free web-based tool to share files, photos, documents, and text directly between devices on the same Wi-Fi using a 4-digit code and an encrypted peer-to-peer (WebRTC) connection. No app install, no signup, nothing uploaded to a server.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "browserRequirements": "Requires a modern web browser with WebRTC support",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Share files between devices on the same Wi-Fi",
+        "4-digit code pairing with QR code option",
+        "Send photos, documents, and any file type",
+        "Send text and clipboard snippets",
+        "Encrypted peer-to-peer transfer (WebRTC)",
+        "No app install and no account required"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is any-share?",
+          "acceptedAnswer": { "@type": "Answer", "text": "any-share (any-share.site) is a free, web-based tool for sharing files, photos, documents, and text directly between devices on the same Wi-Fi network. You open the site on both devices, enter a 4-digit code to pair them, and transfer over an encrypted peer-to-peer connection. Nothing is uploaded to a server." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I share files between my phone and PC on the same Wi-Fi?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Open any-share.site on both your phone and PC. Each device shows a 4-digit code. On one device, enter the other device's code (or scan its QR code), accept the request, and then drag or pick files to send them directly between the devices." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is any-share free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. any-share is completely free, with no account, no signup, and no ads." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install an app?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. any-share runs entirely in your web browser, so there is nothing to install. You can optionally add it to your home screen as a PWA." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is any-share private and secure?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Files transfer directly between the two devices over an end-to-end encrypted WebRTC connection and are never uploaded to or stored on a server. You only connect to a device whose 4-digit code you were given." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does any-share work on locked-down lab or university Wi-Fi?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It works on networks that allow direct device-to-device connections, such as most home and hotspot Wi-Fi. Some university or lab networks enable client isolation, which blocks direct connections between devices even on the same Wi-Fi; on those networks local-only transfer cannot connect." }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <main id="app">
@@ -133,6 +225,52 @@
     </main>
 
     <div id="toast" class="toast hidden"></div>
+
+    <section class="about" id="about" aria-label="About any-share">
+      <h2>Share files between devices on the same Wi-Fi — no app, no signup</h2>
+      <p>
+        <strong>any-share</strong> is a free, web-based tool for sharing files, photos, documents,
+        and text directly between devices on the same Wi-Fi network. Open
+        <strong>any-share.site</strong> on both devices, enter a 4-digit code to pair them, and the
+        files transfer over an encrypted peer-to-peer connection. Nothing is uploaded to a server.
+      </p>
+
+      <h3>How to share files between your phone and PC</h3>
+      <ol>
+        <li>Open <strong>any-share.site</strong> on both devices on the same Wi-Fi.</li>
+        <li>Each device shows its own 4-digit code.</li>
+        <li>On one device, type the other device's code (or scan its QR code) and tap Connect.</li>
+        <li>Accept the request — both screens show a matching word so you know it's the right device.</li>
+        <li>Drop or choose files, or type text, to send them directly between the two devices.</li>
+      </ol>
+
+      <h3>Frequently asked questions</h3>
+      <dl class="faq">
+        <dt>Is any-share free?</dt>
+        <dd>Yes — completely free, with no account, no signup, and no ads.</dd>
+
+        <dt>Do I need to install an app?</dt>
+        <dd>No. any-share runs entirely in your web browser. You can optionally add it to your home screen.</dd>
+
+        <dt>Is it private and secure?</dt>
+        <dd>
+          Files transfer directly between the two devices over an end-to-end encrypted (WebRTC)
+          connection and are never uploaded to or stored on a server. You only connect to a device
+          whose 4-digit code you were given.
+        </dd>
+
+        <dt>Does it work on locked-down lab or university Wi-Fi?</dt>
+        <dd>
+          It works on networks that allow direct device-to-device connections, such as most home and
+          hotspot Wi-Fi. Some university or lab networks use “client isolation”, which blocks direct
+          connections between devices even on the same Wi-Fi — on those networks local-only transfer
+          cannot connect.
+        </dd>
+
+        <dt>What can I send?</dt>
+        <dd>Any file type — photos, videos, documents, and more — multiple files at once, plus text and clipboard snippets.</dd>
+      </dl>
+    </section>
 
     <footer class="footer muted">Files go straight between devices on your wifi. Encrypted end-to-end. Never uploaded.</footer>
 

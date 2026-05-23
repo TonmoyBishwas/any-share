@@ -120,3 +120,23 @@ button:active { transform: scale(.98); }
 }
 
 .footer { font-size: 12px; text-align: center; padding: 14px; max-width: 460px; }
+
+/* About / FAQ — visible, crawlable content for users and search/AI */
+.about {
+  width: 100%;
+  max-width: 640px;
+  margin: 8px auto 0;
+  padding: 24px 18px 8px;
+  border-top: 1px solid #232c4e;
+  color: var(--text);
+  line-height: 1.6;
+}
+.about h2 { font-size: 19px; margin: 0 0 12px; }
+.about h3 { font-size: 15px; margin: 22px 0 8px; color: var(--accent); }
+.about p { color: var(--muted); margin: 0 0 12px; }
+.about strong { color: var(--text); }
+.about ol { color: var(--muted); padding-left: 20px; margin: 0 0 8px; }
+.about ol li { margin: 6px 0; }
+.about .faq { margin: 0; }
+.about .faq dt { font-weight: 600; margin-top: 14px; }
+.about .faq dd { margin: 4px 0 0; color: var(--muted); }

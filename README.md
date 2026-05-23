@@ -1,4 +1,7 @@
-# any-share
+# any-share — local file sharing over Wi-Fi, no app
+
+**Live: [any-share.site](https://any-share.site)** · Free, web-based, peer-to-peer file
+sharing between devices on the same Wi-Fi. No install, no signup, nothing uploaded.
 
 Share files, media, and text **directly between devices on the same wifi** — no app
 install, no account, nothing uploaded to a server. Built for locked-down places like

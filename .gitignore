@@ -5,3 +5,6 @@ dist/
 .dev.vars
 *.log
 .DS_Store
+
+# Never commit MCP config — may contain API tokens
+.mcp.json

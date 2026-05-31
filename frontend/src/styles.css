@@ -92,9 +92,14 @@ body {
 .card.drop {
   border-style: dashed;
   align-items: center; text-align: center;
+  padding: 26px 18px; gap: 10px;
   transition: background .15s, border-color .15s;
 }
+.card.drop p { color: var(--muted); font-size: 14px; margin: 0; }
+.drop-icon { color: var(--muted); transition: color .15s, transform .15s; }
 .card.drop.dragover { background: #fff; border-color: var(--accent); border-style: solid; }
+.card.drop.dragover .drop-icon { color: var(--accent); transform: translateY(-2px); }
+.card.drop.dragover p { color: var(--ink); }
 
 /* ---- Type helpers ---- */
 .label {

@@ -168,7 +168,7 @@ function completeIncoming(file: CompletedFile): void {
   const a = document.createElement("a");
   a.href = url;
   a.download = file.name;
-  a.textContent = "Save ⬇";
+  a.textContent = "Save ↓";
   act.appendChild(a);
   a.click(); // auto-download; link stays for re-saving
 }
@@ -177,7 +177,7 @@ function markDone(rowId: string): void {
   const li = document.getElementById(rowId);
   if (!li) return;
   li.querySelector(".bar")!.classList.add("done");
-  (li.querySelector(".act") as HTMLElement).textContent = "sent ✓";
+  (li.querySelector(".act") as HTMLElement).textContent = "sent";
 }
 
 function addReceivedText(text: string): void {

@@ -10,7 +10,7 @@ export function pairUrl(code: string): string {
 }
 
 export async function renderQr(canvas: HTMLCanvasElement, text: string): Promise<void> {
-  await QRCode.toCanvas(canvas, text, { width: 180, margin: 1, color: { dark: "#0b1020", light: "#ffffff" } });
+  await QRCode.toCanvas(canvas, text, { width: 180, margin: 1, color: { dark: "#1a1a1a", light: "#ffffff" } });
 }
 
 // Pull a 4-digit code out of a scanned value, whether it's a bare code or a pair URL.

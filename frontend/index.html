@@ -224,8 +224,9 @@
 
       <!-- direct connection failed (client isolation) -->
       <section id="screen-failed" class="screen hidden">
-        <div class="card center">
-          <p class="big">🔌 Couldn't connect on this network</p>
+        <div class="card center notice">
+          <p class="notice-kicker">Connection blocked</p>
+          <p class="big">Couldn't connect on this network</p>
           <p>This wifi appears to block direct device-to-device connections
             (<em>client isolation</em>), so local-only sharing can't reach the other device here.</p>
           <p class="hint">It will work on networks that allow direct connections (most home wifi).
@@ -236,8 +237,9 @@
 
       <!-- peer left -->
       <section id="screen-left" class="screen hidden">
-        <div class="card center">
-          <p>The other device disconnected.</p>
+        <div class="card center notice">
+          <p class="notice-kicker">Session ended</p>
+          <p class="big">The other device disconnected</p>
           <button id="left-back" class="primary">Back</button>
         </div>
       </section>

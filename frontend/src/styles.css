@@ -135,14 +135,25 @@ body {
 }
 .peer-name { font-family: var(--display); font-size: 22px; font-weight: 700; }
 
-/* ---- Status / pairing screens: composed, vertically centred ---- */
-#screen-connecting, #screen-outgoing, #screen-incoming, #screen-rtc {
+/* ---- Status / pairing / notice screens: composed, vertically centred ---- */
+#screen-connecting, #screen-outgoing, #screen-incoming, #screen-rtc,
+#screen-failed, #screen-left {
   min-height: 58vh; justify-content: center;
 }
 .status {
   font-family: var(--mono); font-size: 13px; letter-spacing: .03em;
   color: var(--muted); margin: 0;
 }
+
+/* ---- Notice screens (failed / left) ---- */
+.card.notice { border-top: 3px solid var(--accent); padding-top: 22px; gap: 14px; }
+.notice-kicker {
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .14em;
+  color: var(--accent); margin: 0;
+}
+.notice .big { margin: 0; }
+.notice p { margin: 0; }
 
 /* ---- Inputs ---- */
 input, textarea {

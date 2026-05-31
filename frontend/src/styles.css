@@ -123,9 +123,21 @@ body {
 
 .verify {
   font-family: var(--mono);
-  font-size: 26px; font-weight: 600; color: var(--ink); letter-spacing: .06em;
+  font-size: 24px; font-weight: 600; color: var(--ink); letter-spacing: .06em;
+  display: inline-block; align-self: center;
+  padding: 9px 22px; margin: 2px 0;
+  background: #fff; border: 1px solid var(--ink); border-radius: var(--radius);
 }
 .peer-name { font-family: var(--display); font-size: 22px; font-weight: 700; }
+
+/* ---- Status / pairing screens: composed, vertically centred ---- */
+#screen-connecting, #screen-outgoing, #screen-incoming, #screen-rtc {
+  min-height: 58vh; justify-content: center;
+}
+.status {
+  font-family: var(--mono); font-size: 13px; letter-spacing: .03em;
+  color: var(--muted); margin: 0;
+}
 
 /* ---- Inputs ---- */
 input, textarea {

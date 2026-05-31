@@ -150,6 +150,29 @@ input:focus, textarea:focus {
 .row { display: flex; gap: 10px; }
 .row > input { flex: 1; }
 
+/* ---- Home: spec-sheet numbered sections ---- */
+#screen-home { counter-reset: sect; }
+#screen-home .card { counter-increment: sect; }
+#screen-home .card > .label:first-child::before {
+  content: counter(sect, decimal-leading-zero) "  ";
+  color: var(--accent);
+}
+#screen-home #my-code { margin: 2px 0 6px; }
+
+/* secondary "scan" control — quieter than the primary button */
+.scan-link {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  align-self: flex-start;
+  background: none; border: none; padding: 6px 2px;
+  font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .02em;
+  color: var(--muted);
+}
+.scan-link svg { color: var(--muted); transition: color .15s; }
+.scan-link:hover { color: var(--ink); }
+.scan-link:hover svg { color: var(--accent); }
+.scan-link span, .scan-link { text-decoration: none; }
+.scan-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
 /* ---- Buttons ---- */
 button {
   font-family: var(--body);

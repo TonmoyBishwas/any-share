@@ -8,6 +8,13 @@ compatibility_date = "2026-05-01"
 # Lets you test on https://any-share-rtc.<your-subdomain>.workers.dev before wiring the domain.
 workers_dev = true
 
+# Signaling lives under the one domain at /rtc/*.
+# A Worker route is more specific than Pages, so it wins for these paths.
+# (Must be a top-level key, before any [[table]] sections, or TOML nests it.)
+routes = [
+  { pattern = "any-share.site/rtc/*", zone_name = "any-share.site" }
+]
+
 # A Durable Object instance per network groups devices that share a public IP.
 [[durable_objects.bindings]]
 name = "ROOMS"
@@ -17,12 +24,6 @@ class_name = "RoomDO"
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["RoomDO"]
-
-# Signaling lives under the one domain at /rtc/*.
-# A Worker route is more specific than Pages, so it wins for these paths.
-routes = [
-  { pattern = "any-share.site/rtc/*", zone_name = "any-share.site" }
-]
 
 # Optional: rotate the room-key salt by setting a secret (wrangler secret put ROOM_SALT).
 # [vars]

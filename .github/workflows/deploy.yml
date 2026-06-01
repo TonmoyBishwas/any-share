@@ -27,7 +27,10 @@ jobs:
 
       - name: Install dependencies
         working-directory: frontend
-        run: npm ci
+        # npm install (not npm ci): the committed lockfile is missing some
+        # platform-specific optional deps (@emnapi/*), which makes the strict
+        # `npm ci` sync check fail on the Linux runner.
+        run: npm install --no-audit --no-fund
 
       - name: Build
         working-directory: frontend

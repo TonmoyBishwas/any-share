@@ -9,6 +9,7 @@
 // and code "1234" at one university can never collide with "1234" at another.
 
 import { RoomDO } from "./room";
+import { networkId } from "./netid";
 
 export { RoomDO };
 
@@ -29,8 +30,10 @@ export default {
       if (request.headers.get("Upgrade") !== "websocket") {
         return new Response("Expected a WebSocket upgrade.", { status: 426 });
       }
+      // Group by a LAN-stable network id: IPv6 devices on one WiFi share a /64 but
+      // not a /128, so keying on the raw IP would put them in different rooms.
       const ip = request.headers.get("CF-Connecting-IP") ?? "local-dev";
-      const roomKey = await roomKeyForIp(ip, env.ROOM_SALT ?? "any-share");
+      const roomKey = await roomKeyForIp(networkId(ip), env.ROOM_SALT ?? "any-share");
       const stub = env.ROOMS.get(env.ROOMS.idFromName(roomKey));
       return stub.fetch(request);
     }
@@ -39,7 +42,8 @@ export default {
   },
 };
 
-// One-way, daily-rotating room key. Same IP + same UTC day => same room.
+// One-way, daily-rotating room key. Same network + same UTC day => same room.
+// `ip` is the LAN-stable network id from networkId(), not necessarily a raw address.
 async function roomKeyForIp(ip: string, salt: string): Promise<string> {
   const day = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
   const bytes = new TextEncoder().encode(`${salt}:${day}:${ip}`);
